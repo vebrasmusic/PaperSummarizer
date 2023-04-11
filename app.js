@@ -1,5 +1,6 @@
 const pdfInput = document.getElementById("pdfInput");
 const htmlOutput = document.getElementById("htmlOutput");
+const copyButton = document.getElementById("copyButton");
 
 pdfInput.addEventListener("change", async (event) => {
   const file = event.target.files[0];
@@ -9,7 +10,6 @@ pdfInput.addEventListener("change", async (event) => {
   formData.append("pdf", file);
 
   try {
-    // Replace "YOUR_BACKEND_API_URL" with the actual URL of your backend API on the Vultr server.
     const response = await fetch("http://45.32.90.120:8000/convert", {
       method: "POST",
       body: formData,
@@ -17,10 +17,17 @@ pdfInput.addEventListener("change", async (event) => {
 
     if (!response.ok) throw new Error("Failed to convert PDF to HTML.");
 
-    const htmlContent = await response.text();
-    htmlOutput.innerHTML = htmlContent;
+    const htmlUrl = await response.text();
+    htmlOutput.value = htmlUrl;
+    copyButton.disabled = false;
   } catch (error) {
     console.error(error);
-    htmlOutput.innerHTML = "<p>Error: Failed to convert PDF to HTML.</p>";
+    htmlOutput.value = "Error: Failed to convert PDF to HTML.";
+    copyButton.disabled = true;
   }
+});
+
+copyButton.addEventListener("click", () => {
+  htmlOutput.select();
+  document.execCommand("copy");
 });
