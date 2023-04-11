@@ -1,6 +1,7 @@
 const pdfInput = document.getElementById("pdfInput");
 const htmlOutput = document.getElementById("htmlOutput");
 const copyButton = document.getElementById("copyButton");
+const htmlUrl = document.getElementById("htmlUrl");
 
 pdfInput.addEventListener("change", async (event) => {
   const file = event.target.files[0];
@@ -17,17 +18,16 @@ pdfInput.addEventListener("change", async (event) => {
 
     if (!response.ok) throw new Error("Failed to convert PDF to HTML.");
 
-    const htmlUrl = await response.text();
-    htmlOutput.value = htmlUrl;
+    const url = await response.text();
+    htmlUrl.value = url;
     copyButton.disabled = false;
   } catch (error) {
     console.error(error);
-    htmlOutput.value = "Error: Failed to convert PDF to HTML.";
-    copyButton.disabled = true;
+    htmlOutput.innerHTML = "<p>Error: Failed to convert PDF to HTML.</p>";
   }
 });
 
 copyButton.addEventListener("click", () => {
-  htmlOutput.select();
+  htmlUrl.select();
   document.execCommand("copy");
 });
