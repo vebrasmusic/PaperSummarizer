@@ -4,42 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDF to HTML Converter</title>
+  <script src="app.js" defer></script>
 </head>
 <body>
   <h1>PDF to HTML Converter</h1>
-  <input type="file" id="pdfInput" accept=".pdf" />
-  <button id="convertBtn">Convert</button>
-  <div id="output"></div>
-
-  <script>
-    document.getElementById('convertBtn').addEventListener('click', async () => {
-      const pdfInput = document.getElementById('pdfInput');
-      const outputDiv = document.getElementById('output');
-
-      if (pdfInput.files.length === 0) {
-        alert('Please select a PDF file to convert');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('pdf', pdfInput.files[0]);
-
-      try {
-        const response = await fetch('<Your Cloudflare Worker URL>', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error('Conversion failed');
-        }
-
-        const { htmlUrl } = await response.json();
-        outputDiv.innerHTML = `<a href="${htmlUrl}" target="_blank">Access converted HTML</a>`;
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
-    });
-  </script>
+  <input type="file" id="pdfInput" accept="application/pdf">
+  <div id="htmlOutput"></div>
 </body>
 </html>
