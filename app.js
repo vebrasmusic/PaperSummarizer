@@ -10,7 +10,7 @@ pdfInput.addEventListener("change", async (event) => {
 
   try {
     // Replace "YOUR_BACKEND_API_URL" with the actual URL of your backend API on the Vultr server.
-    const response = await fetch("YOUR_BACKEND_API_URL", {
+    const response = await fetch("http://45.32.90.120:8000/convert", {
       method: "POST",
       body: formData,
     });
