@@ -11,7 +11,7 @@ pdfInput.addEventListener("change", async (event) => {
   formData.append("pdf", file);
 
   try {
-    const response = await fetch("http://45.32.90.120:8000/convert", {
+    const response = await fetch("https://vebraspdftohtml.zapto.org/convert", {
       method: "POST",
       body: formData,
     });
