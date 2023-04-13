@@ -25,21 +25,29 @@ The application has the following components:
 To set up and run the application, follow these steps:
 
 1. Install the required dependencies:
-```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 
 2. Configure Nginx by copying the provided `nginx.conf` file to the appropriate location (e.g., `/etc/nginx/sites-available/`) and creating a symbolic link in the `sites-enabled` directory:
 
-```sudo cp nginx.conf /etc/nginx/sites-available/pdf_to_html
-sudo ln -s /etc/nginx/sites-available/pdf_to_html /etc/nginx/sites-enabled/ ```
+```
+sudo cp nginx.conf /etc/nginx/sites-available/pdf_to_html
+sudo ln -s /etc/nginx/sites-available/pdf_to_html /etc/nginx/sites-enabled/
+```
 
 3. Restart Nginx to apply the changes:
 
-```sudo service nginx restart```
+```
+sudo service nginx restart
+```
 
 
 4. Run the Flask application:
 
-```python app.py```
+```
+python app.py
+```
 
 5. Access the application in your web browser by navigating to the server's IP address or domain name.
 
